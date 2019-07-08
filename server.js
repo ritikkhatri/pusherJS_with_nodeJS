@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-var path = require('path')
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -19,12 +18,10 @@ var pusher = new Pusher({
   encrypted: true
 });
 
+var books = [] ;
+
 app.post('/post',(req,res)=>{
-console.log(req.body)
-    var books = [] ;
-    
-    books.push(req.body.book) 
-    console.log("YE h books "+books)  
+    books.push(req.body.book); 
     pusher.trigger('post', 'add', {
         books : books
       });

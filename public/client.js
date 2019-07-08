@@ -14,7 +14,6 @@ const addbook =(e)=>{
     fetch("http://localhost:3000/post",{method:"POST",
     headers: {
         'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
     },
       body :JSON.stringify({
           book : newBook
@@ -22,7 +21,7 @@ const addbook =(e)=>{
       })
     .then(res=>res.json())
     .then(json=>{
-        console.log("YE aaya h wha se"+json.message)
+        console.log(json.message)
     })
     }
 bookForm.addEventListener("submit",addbook);
@@ -30,8 +29,8 @@ bookForm.addEventListener("submit",addbook);
 
 var channel = pusher.subscribe('post');
 channel.bind('add', function(data) {
-  data.books.map((bookname)=>{
-  $('#books-list').append($('<li>').html('<b>'+bookname+'</b>')); 
+  var length = data.books.length;
 
-  })
+  $('#books-list').append($('<li>').html('<b>'+data.books[length-1]+'</b>')); 
+
 });
