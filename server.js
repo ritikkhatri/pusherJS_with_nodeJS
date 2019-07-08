@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var API = require('./credentials')
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -11,9 +12,9 @@ app.get('/',(req,res)=>{
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
-  appId: '817449',
-  key: 'abad9fe71fbf913ba4d0',
-  secret: 'cd78d8fd37c3d64a6e47',
+  appId: API.APP_ID,
+  key: API.KEY,
+  secret: API.SECRET,
   cluster: 'ap2',
   encrypted: true
 });
